@@ -83,8 +83,6 @@ export class CadastroEntregadorComponent implements OnInit {
     // if (this.formGroup.invalid) {
     //   return;
     // }
-    alert(JSON.stringify(this.objeto));
-
     this.service.save(this.objeto)
       .subscribe(
         (data) => {
