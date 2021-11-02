@@ -12,6 +12,9 @@ const routes: Routes = [
     path:"entregador", component:EntregadorComponent
   },
   {
+    path:"entregador/editar-entregador/:id", component:CadastroEntregadorComponent
+  },
+  {
     path:"cadastro-entregador", component:CadastroEntregadorComponent
   },
 ];

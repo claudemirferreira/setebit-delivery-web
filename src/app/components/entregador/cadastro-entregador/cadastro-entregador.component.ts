@@ -13,13 +13,9 @@ import { EntregadorService } from 'src/app/services/entregador.service';
   styleUrls: ['./cadastro-entregador.component.scss']
 })
 export class CadastroEntregadorComponent implements OnInit {
-
   
   objeto: Entregador = new Entregador();
   formGroup!: FormGroup;
-  isReadonly = false;
-  submitted = false;
-  loading = false;
 
   constructor(
     private service: EntregadorService,
@@ -28,36 +24,34 @@ export class CadastroEntregadorComponent implements OnInit {
     public dialog: MatDialog,
     private toastr: ToastrService,
     private router: Router
-  ) { 
-  }
+  ) { }
 
   ngOnInit(): void {
     this.createForm();
     this.toastr.clear();
-    this.loading = false;
     this.objeto = new Entregador();
     this.loadCompanyData()
   }
 
   loadCompanyData() {
+    
     this.route.params.subscribe((params) => {
-      var cnpj = params['id'];
-      console.log(cnpj);
-      if (!cnpj) {
+      var id = params['id'];
+      if (!id) {
         this.objeto = new Entregador();
       } 
-      // else {
-      //   this.service.findById(cnpj).subscribe(
-      //     (Entregador: Entregador) => {
-      //       this.objeto = Entregador;
-      //       this.isReadonly = true;
-      //     },
-      //     (err) => {
-      //       console.log('ocorreu um erro');
-      //       this.toastr.error("Erro ao obter dados da Entregador");
-      //     }
-      //   );
-      // }
+      else {
+        this.service.findById(id).subscribe(
+          (entregador: Entregador) => {
+            this.objeto = entregador;
+            alert(JSON.stringify(this.objeto))
+          },
+          (err) => {
+            console.log('ocorreu um erro');
+            this.toastr.error("Erro ao obter dados da empresa");
+          }
+        );
+      }
     });
   }
 
@@ -90,6 +84,7 @@ export class CadastroEntregadorComponent implements OnInit {
     // if (this.formGroup.invalid) {
     //   return;
     // }
+    alert(JSON.stringify(this.objeto));
 
     this.service.save(this.objeto)
       .subscribe(
@@ -106,7 +101,6 @@ export class CadastroEntregadorComponent implements OnInit {
   }
   
   onReset(formDirective: FormGroupDirective) {
-    this.submitted = false;
     this.formGroup.reset();
     formDirective.resetForm();
   }

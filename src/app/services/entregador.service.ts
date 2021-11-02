@@ -22,12 +22,25 @@ export class EntregadorService {
       )
   }
 
+  list1(): Observable<Entregador[]> {
+    return this.http.get<Entregador[]>(this.API)
+    .pipe(
+      first(),
+      // delay(5000),
+      tap(courses => console.log(courses))
+    );
+  }
+
   save(objeto: Entregador) {
     return this.http.post(this.API, objeto);
   }
 
   delete(id:number){
     return this.http.delete(this.API + id);
+  }
+  
+  findById(id: number){
+    return this.http.get<Entregador>(this.API + id);
   }
 
 }
