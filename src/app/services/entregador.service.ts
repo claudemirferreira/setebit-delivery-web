@@ -21,4 +21,13 @@ export class EntregadorService {
         tap(console.log)
       )
   }
+
+  save(objeto: Entregador) {
+    return this.http.post(this.API, objeto);
+  }
+
+  delete(id:number){
+    return this.http.delete(this.API + id);
+  }
+
 }

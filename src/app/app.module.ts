@@ -18,13 +18,23 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { CadastroEntregadorComponent } from './components/entregador/cadastro-entregador/cadastro-entregador.component';
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     LoginComponent,
-    EntregadorComponent
+    EntregadorComponent,
+    CadastroEntregadorComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +49,16 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     MatTableModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
+    FormsModule, 
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      enableHtml: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
