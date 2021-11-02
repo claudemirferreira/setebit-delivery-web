@@ -40,10 +40,9 @@
                 <button mat-mini-fab color="warn" (click) = "delete(element.id)">
                     <mat-icon>delete</mat-icon>
                 </button>&nbsp;
-
-                <button mat-raised-button [routerLink]="['editar-entregador/', element.id]">
-                        <mat-icon>edit</mat-icon>Detalhe
-                      </button>
+                <button mat-mini-fab [routerLink]="['editar-entregador/', element.id]">
+                    <mat-icon>edit</mat-icon>
+                </button>
             </td>
         </ng-container>
 
