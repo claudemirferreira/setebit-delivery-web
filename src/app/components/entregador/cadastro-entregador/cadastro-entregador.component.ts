@@ -30,10 +30,10 @@ export class CadastroEntregadorComponent implements OnInit {
     this.createForm();
     this.toastr.clear();
     this.objeto = new Entregador();
-    this.loadCompanyData()
+    this.loadData();
   }
 
-  loadCompanyData() {
+  loadData() {
     
     this.route.params.subscribe((params) => {
       var id = params['id'];
@@ -44,7 +44,6 @@ export class CadastroEntregadorComponent implements OnInit {
         this.service.findById(id).subscribe(
           (entregador: Entregador) => {
             this.objeto = entregador;
-            alert(JSON.stringify(this.objeto))
           },
           (err) => {
             console.log('ocorreu um erro');

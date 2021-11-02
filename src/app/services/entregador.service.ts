@@ -15,20 +15,14 @@ export class EntregadorService {
 
   constructor(private http: HttpClient) {}
 
-  list(): Observable<Entregador[]> {
-    return this.http.get<Entregador[]>(this.API)
+  list(entregador:Entregador): Observable<Entregador[]> {
+    let url = this.API;
+    if(entregador.nome.length > 0)
+       url = url + '?nome='+entregador.nome;
+    return this.http.get<Entregador[]>(url)
       .pipe(
         tap(console.log)
       )
-  }
-
-  list1(): Observable<Entregador[]> {
-    return this.http.get<Entregador[]>(this.API)
-    .pipe(
-      first(),
-      // delay(5000),
-      tap(courses => console.log(courses))
-    );
   }
 
   save(objeto: Entregador) {

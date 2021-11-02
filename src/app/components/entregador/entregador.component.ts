@@ -13,6 +13,7 @@ export class EntregadorComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'nome', 'actions'];
   lista: Entregador[] = [];
+  objeto: Entregador = new Entregador();
 
   constructor(
     private service : EntregadorService,
@@ -21,11 +22,13 @@ export class EntregadorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.list();
+    this.objeto.nome = '';
+    this.objeto.id = 0;
+    this.find();
   }
   
-  list(){
-   this.service.list().subscribe(
+  find(){
+   this.service.list(this.objeto).subscribe(
      dados => {
       this.lista = dados;
       console.log('result = ' + this.lista);
@@ -42,7 +45,7 @@ export class EntregadorComponent implements OnInit {
         (data) => {
           console.log('lesson saved successfully' + data)          
           this.toastr.success('Registro excluído com sucesso!', 'Sucesso');
-          this.list();
+          this.find();
         },
         (err) => {
           console.log('ocorreu um error ' + err) 
