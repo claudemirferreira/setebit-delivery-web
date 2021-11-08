@@ -22,8 +22,6 @@ export class EntregadorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.objeto.nome = '';
-    this.objeto.id = 0;
     this.find();
   }
   

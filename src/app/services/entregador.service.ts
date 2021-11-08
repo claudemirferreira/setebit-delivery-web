@@ -12,15 +12,21 @@ export class EntregadorService {
 
   // private readonly API = '/assets/caixa.json';
   private readonly API = `${environment.URL_BASE}entregador/`;
+  param = '?';
+
 
   constructor(private http: HttpClient) {}
 
   list(entregador:Entregador): Observable<Entregador[]> {
     let url = this.API;
-    if(entregador.nome.length > 0)
-       url = url + '?nome='+entregador.nome;
-    if(entregador.status.length > 0)
-        url = url + '?status='+entregador.status;
+    if(entregador.nome.length > 0){
+      url = url + this.param + 'nome='+entregador.nome;
+      this.param = '&';
+    }
+    if(entregador.status.length > 0){
+      url = url + this.param + 'status='+entregador.status;
+      this.param = '&';
+    }
     return this.http.get<Entregador[]>(url)
       .pipe(
         tap(console.log)
