@@ -1,0 +1,79 @@
+<section class="container flex flex-wrap center">
+  <div class="flex-container">
+    <mat-card class="example-card">
+      <form [formGroup]="formGroup" #formDirective="ngForm" (ngSubmit)="save(formDirective)">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Cadastro de Entrega</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+          <p>
+            <mat-form-field appearance="outline" class="field-short-text-width">
+              <mat-label>numeroPedido</mat-label>
+              <input [(ngModel)]="objeto.numeroPedido" maxlength="60" matInput formControlName="numeroPedido" />
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field appearance="outline" class="field-short-text-width">
+              <mat-label>endereco</mat-label>
+              <input [(ngModel)]="objeto.endereco" maxlength="60" matInput formControlName="endereco" />
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field appearance="outline" class="field-short-text-width">
+              <mat-label>valor</mat-label>
+              <input [(ngModel)]="objeto.valor" maxlength="60" matInput formControlName="valor" />
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field appearance="outline" class="field-short-text-width">
+              <mat-label>taxa</mat-label>
+              <input [(ngModel)]="objeto.taxa" maxlength="60" matInput formControlName="taxa" />
+            </mat-form-field>
+          </p>
+
+
+           
+          <div class="ng-autocomplete">
+            <ng-autocomplete 
+              [data]="listaEntregador"
+              [searchKeyword]="keyword"
+              (selected)='selectEvent($event)'
+              (inputChanged)='onChangeSearch($event)'
+              (inputFocused)='onFocused($event)'
+              [itemTemplate]="itemTemplate"
+              [notFoundTemplate]="notFoundTemplate">                                 
+            </ng-autocomplete>
+            
+            <ng-template #itemTemplate let-item>
+            <a [innerHTML]="item.nome"></a>
+            </ng-template>
+            
+            <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+            </ng-template>
+            </div>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-raised-button routerLink="/entregador">
+            <i class="material-icons">undo</i>Voltar
+          </button>
+
+          <button mat-raised-button color="primary" type="submit">
+            Salvar
+            <mat-icon>
+              <span>save</span>
+            </mat-icon>
+          </button>
+        </mat-card-actions>
+
+      </form>
+    </mat-card>
+  </div>
+</section>

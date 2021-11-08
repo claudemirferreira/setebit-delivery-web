@@ -19,6 +19,8 @@ export class EntregadorService {
     let url = this.API;
     if(entregador.nome.length > 0)
        url = url + '?nome='+entregador.nome;
+    if(entregador.status.length > 0)
+        url = url + '?status='+entregador.status;
     return this.http.get<Entregador[]>(url)
       .pipe(
         tap(console.log)

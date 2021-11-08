@@ -21,10 +21,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CadastroEntregadorComponent } from './components/entregador/cadastro-entregador/cadastro-entregador.component';
 import { ToastrModule } from 'ngx-toastr';
+import { EntregaComponent } from './components/entrega/entrega.component';
+import { CadastroEntregaComponent } from './components/entrega/cadastro-entrega/cadastro-entrega.component';
 
 
 
@@ -34,7 +38,9 @@ import { ToastrModule } from 'ngx-toastr';
     NavComponent,
     LoginComponent,
     EntregadorComponent,
-    CadastroEntregadorComponent
+    CadastroEntregadorComponent,
+    EntregaComponent,
+    CadastroEntregaComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +61,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatSnackBarModule,
     FormsModule, 
     ReactiveFormsModule,
+    AutocompleteLibModule,
     ToastrModule.forRoot({
       preventDuplicates: true,
       enableHtml: true
